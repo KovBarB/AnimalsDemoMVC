@@ -1,0 +1,96 @@
+﻿@model NewAnimalSearch.Models.Animal
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Animal</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Org.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Org.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegisteredAtOrg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegisteredAtOrg)
+        </dd>
+
+        <dt>
+            Kora
+        </dt>
+
+        <dd>
+            @{string age = String.Empty;
+                if (Model.AgeYear > 0)
+                {
+                    age += Model.AgeYear.ToString() + " év";
+                }
+                if (Model.AgeMonth > 0)
+                {
+                    if (Model.AgeYear > 0)
+                    {
+                        age += " ";
+                    }
+                    age += Model.AgeMonth.ToString() + " hónap";
+                }
+                @age
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.URL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.URL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.About)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.About)
+        </dd>
+
+    </dl>
+    <h4>
+        @Html.DisplayNameFor(model => model.MyPics)
+    </h4>
+    @if (ViewBag.Pics.Count != 0)
+    {
+        foreach (var photo in ViewBag.Pics)
+        {<img src="@photo.URL" alt="IMAGES" width="200" />}
+    }
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProtegeId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
