@@ -12,8 +12,8 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>
-                Szervezet
+            <th>                
+                @Html.ActionLink("Szervezet", "Index", new { sortOrder = ViewBag.OrgSortParm })
             </th>
             <th>
                 @Html.ActionLink("Típus", "Index", new { sortOrder = ViewBag.TypeSortParm })
@@ -21,8 +21,8 @@
             <th>
                 @Html.ActionLink("Név", "Index", new { sortOrder = ViewBag.NameSortParm })
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RegisteredAtOrg)
+            <th>                
+                @Html.ActionLink("Szervezetnél felvéve", "Index", new { sortOrder = ViewBag.RegDateSortParm })
             </th>
             <th>
                 @Html.ActionLink("Kor", "Index", new { sortOrder = ViewBag.AgeSortParm })

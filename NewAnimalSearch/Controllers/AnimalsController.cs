@@ -21,14 +21,22 @@ namespace NewAnimalSearch.Controllers
         // GET: Animals
         public ActionResult Index(string sortOrder)
         {
-            ViewBag.NameSortParm = sortOrder == "Name" ? "name_desc" : "Name";
-            ViewBag.AgeSortParm = sortOrder == "Age" ? "age_desc" : "Age";
+            ViewBag.OrgSortParm = sortOrder == "Org" ? "org_desc" : "Org";
             ViewBag.TypeSortParm = sortOrder == "Type" ? "type_desc" : "Type";
+            ViewBag.NameSortParm = sortOrder == "Name" ? "name_desc" : "Name";
+            ViewBag.RegDateSortParm = sortOrder == "RegisteredAtOrg" ? "regDate_desc" : "RegisteredAtOrg";
+            ViewBag.AgeSortParm = sortOrder == "Age" ? "age_desc" : "Age";          
 
             var animals = db.Animals.Include(a => a.Org);
 
             switch (sortOrder)
             {
+                case "Org":
+                    animals = animals.OrderBy(a => a.Org.Name);
+                    break;
+                case "org_desc":
+                    animals = animals.OrderByDescending(a => a.Org.Name);
+                    break;
                 case "Name":
                     animals = animals.OrderBy(a => a.Name);
                     break;
@@ -46,6 +54,12 @@ namespace NewAnimalSearch.Controllers
                     break;
                 case "type_desc":
                     animals = animals.OrderByDescending(a => a.Type);
+                    break;
+                case "RegisteredAtOrg":
+                    animals = animals.OrderBy(a => a.RegisteredAtOrg);
+                    break;
+                case "regDate_desc":
+                    animals = animals.OrderByDescending(a => a.RegisteredAtOrg);
                     break;
             }                     
             
